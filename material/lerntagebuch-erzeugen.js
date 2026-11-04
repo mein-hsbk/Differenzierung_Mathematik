@@ -67,7 +67,7 @@ const fields = new Table({
     ] }),
     new TableRow({ height: { value: 620, rule: HeightRule.ATLEAST }, children: [
       cell(p([run('Eingangstest', { bold: true, color: NAVY })]), 4 * CM, { borders: { top: none, left: none, right: none, bottom: none }, v: VerticalAlign.BOTTOM }),
-      cell([p([run('am '), run('____.____.______', { color: LINE }), run('     Punkte: '), run('______', { color: LINE }), run(' von 16')], { spacing: { after: 60 } }),
+      cell([p([run('am '), run('____.____.______', { color: LINE }), run('     Punkte: '), run('______', { color: LINE }), run(' von 14')], { spacing: { after: 60 } }),
             p([run('Empfehlung:  '), box(), run(' Mathe einfach   '), box(), run(' Basis   '), box(), run(' Standard')])], W - 4 * CM, { borders: { top: none, left: none, right: none, bottom: none }, v: VerticalAlign.BOTTOM })
     ] })]
 });

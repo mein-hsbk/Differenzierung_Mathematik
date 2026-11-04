@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Eingangstest – Mathe-Aufbaukurs</title>
-<link rel="stylesheet" href="assets/fonts.css?v=20261016b">
-<link rel="stylesheet" href="assets/kurs.css?v=20261016b">
+<link rel="stylesheet" href="assets/fonts.css?v=20261104">
+<link rel="stylesheet" href="assets/kurs.css?v=20261104">
 </head>
 <body>
 <header class="site"><div class="wrap sitebar">
@@ -25,7 +25,7 @@
 </main>
 <footer class="site-foot"><div class="wrap">Hans-Schwier-Berufskolleg Gelsenkirchen · Fachbereich Umweltschutztechnik · Umwelttechnolog(inn)en</div></footer>
 
-<script src="assets/kurs.js?v=20261016b"></script>
+<script src="assets/kurs.js?v=20261104"></script>
 <script>
 (function(){
 const {I,fr,F,M,EQ,u,nf}=K;
@@ -39,14 +39,19 @@ const q=(x,un)=>`${x}${u(un)}`;
 /* ---------- Teil A: Selbsteinschätzung ---------- */
 const SELF=[
  {id:'abschluss',t:'Welchen Schulabschluss hast du?',o:[['hs','Hauptschulabschluss (nach Klasse 9 oder 10)'],['for','Mittlerer Schulabschluss (FOR)'],['abi','Fachhochschulreife oder Abitur'],['ausl','Abschluss aus einem anderen Land'],['and','Anderer Abschluss']]},
- {id:'note',t:'Welche Note hattest du zuletzt in Mathe?',o:[['12','1 oder 2'],['3','3'],['4','4'],['56','5 oder 6'],['wn','Weiß ich nicht mehr']]},
- {id:'text',t:'Wie leicht fällt es dir, lange Aufgabentexte auf Deutsch zu verstehen?',o:[['leicht','Leicht'],['geht','Es geht'],['schwer','Schwer']]}
+ {id:'note',t:'Welche Note hattest du zuletzt in Mathe?',o:[['12','1 oder 2'],['3','3'],['4','4'],['56','5 oder 6'],['wn','Weiß ich nicht mehr']]}
 ];
 
-/* ---------- Teil B: 16 Aufgaben (je Pflichtmodul eine Basis- und eine Standard-Aufgabe) ---------- */
+/* ---------- Teil 1b: Aufgabentext verstehen (zählt nicht zu den Punkten, entscheidet mit über „Mathe einfach“) ---------- */
+const LESETEXT='Im Pumpwerk Talstraße laufen zwei gleiche Pumpen. Jede Pumpe fördert 45 Liter pro Sekunde. Die Pumpen sind 20 Jahre alt und werden nächstes Jahr ausgetauscht. Morgen soll das Regenbecken leer gepumpt werden. Es enthält 810 m³ Wasser. Wie lange dauert das, wenn beide Pumpen gleichzeitig laufen?';
+const LESEN=[
+ {m:'lesen',L:'L',type:'mc',t:'Was sollst du in dieser Aufgabe ausrechnen?',o:['Wie lange das Leerpumpen dauert','Wie viel Wasser im Becken ist','Wie alt die Pumpen sind','Wie viel Wasser eine Pumpe pro Sekunde fördert']},
+ {m:'lesen',L:'L',type:'mc',t:'Welche Angabe brauchst du für die Rechnung <strong>nicht</strong>?',o:['Die Pumpen sind 20 Jahre alt.','Jede Pumpe fördert 45 Liter pro Sekunde.','Das Becken enthält 810 m³ Wasser.','Es laufen zwei Pumpen gleichzeitig.']}
+];
+
+/* ---------- Teil 2: 14 Aufgaben (je Modul 1–7 eine Basis- und eine Standard-Aufgabe) ---------- */
 const ITEMS=[
  /* Basis */
- {m:'rw',L:'B',type:'mc',t:'Womit beginnst du den Rechenweg im Heft?',o:['Gegeben','Antwortsatz','Rechnung','Formel umstellen']},
  {m:'m1',L:'B',type:'num',t:`Rechne ohne Taschenrechner: ${F('4 + 6 · 3')}`,a:22,un:''},
  {m:'m2',L:'B',type:'num',t:`Ein Tank enthält ${q('2,5','m³')} Fällmittel. Wie viele Liter sind das?`,a:2500,un:'L'},
  {m:'m3',L:'B',type:'num',t:`In 4 Tagen verbraucht die Kläranlage ${q('300','L')} Fällmittel. Wie viel braucht sie in 10 Tagen? Der Verbrauch ist jeden Tag gleich.`,a:750,un:'L'},
@@ -55,26 +60,27 @@ const ITEMS=[
  {m:'m6',L:'B',type:'num',t:`Ein rechteckiges Dach ist ${q('12','m')} lang und ${q('7,5','m')} breit. Wie groß ist die Dachfläche?`,a:90,un:'m²'},
  {m:'m7',L:'B',type:'num',t:`Ein Becken ist ${q('10','m')} lang, ${q('4','m')} breit und ${q('2,5','m')} tief. Wie viele Kubikmeter Wasser passen hinein?`,a:100,un:'m³'},
  /* Standard */
- {m:'rw',L:'S',type:'mc',t:`Eine Pumpe fördert ${q('40','m³/h')}. Sie läuft ${q('3','h')}. Welcher Antwortsatz ist vollständig und richtig?`,o:['Die Pumpe fördert 120 m³.','120','Die Pumpe fördert 120 m³/h.','Die Pumpe fördert 43 m³.']},
  {m:'m1',L:'S',type:'mc',t:`Der Taschenrechner zeigt ${'<span class="lcd lcd-inline"><span class="lcd-m">3.2</span><span class="lcd-x">×10<sup>−03</sup></span></span>'}. Welche Zahl ist das?`,o:['0,0032','3,2','3200','0,032']},
  {m:'m2',L:'S',type:'num',t:`Eine Pumpe fördert ${q('18','m³/h')}. Wie viele Liter pro Sekunde sind das?`,a:5,un:'L/s'},
  {m:'m3',L:'S',type:'num',t:`Im Abfallzentrum sind ${q('120','t')} Altpapier angekommen. Das sind 30 % der ganzen Abfallmenge des Tages. Wie viele Tonnen Abfall sind es insgesamt?`,a:400,un:'t'},
- {m:'m4',L:'S',type:'mc',t:`Der Wirkungsgrad ist ${F('η',EQ,fr(I('P','ab'),I('P','zu')))}. Stelle nach ${I('P','zu')} um.`,o:[F(I('P','zu'),EQ,fr(I('P','ab'),'η')),F(I('P','zu'),EQ,I('P','ab'),M,'η'),F(I('P','zu'),EQ,fr('η',I('P','ab'))),F(I('P','zu'),EQ,I('P','ab'),' − ','η')]},
+ {m:'m4',L:'S',type:'mc',t:`Den Widerstand einer Zuleitung (Hin- und Rückleiter) berechnest du mit ${F(I('R'),EQ,fr('2'+M+I('ρ')+M+I('l'),I('A')))}. Stelle die Formel nach der Länge ${I('l')} um. Gehe dabei schrittweise vor und schreib die Schritte ins Heft.`,
+   o:[F(I('l'),EQ,fr(I('R')+M+I('A'),'2'+M+I('ρ'))),F(I('l'),EQ,fr('2'+M+I('ρ')+M+I('A'),I('R'))),F(I('l'),EQ,I('R'),M,I('A'),M,'2',M,I('ρ')),F(I('l'),EQ,fr(I('R'),'2'+M+I('ρ')+M+I('A')))]},
  {m:'m5',L:'S',type:'num',t:`Ein Heizlüfter mit ${F(I('P'),EQ,q('1500','W'))} läuft ${q('30','min')}. Wie viel Energie braucht er in kWh? (${F(I('E'),EQ,I('P'),M,I('t'))})`,a:0.75,un:'kWh'},
  {m:'m6',L:'S',type:'num',t:`Ein rundes Becken hat den Durchmesser ${F(I('d'),EQ,q('4','m'))}. Wie groß ist die Grundfläche? (${F(I('A'),EQ,fr('π · '+I('d')+'²','4'))})`,a:Math.PI*4,un:'m²',tol:0.01},
  {m:'m7',L:'S',type:'num',t:`Ein runder Behälter hat ${F(I('d'),EQ,q('2','m'))} und ist ${q('3','m')} hoch. Wie viele Kubikmeter passen hinein? (${F(I('V'),EQ,fr('π · '+I('d')+'²','4'),M,I('h'))})`,a:Math.PI*3,un:'m³',tol:0.01}
 ];
 /* Auswahl-Antworten mischen, richtige Antwort merken (immer die erste in der Liste) */
-ITEMS.forEach(it=>{if(it.type==='mc'){it.ok=it.o[0];it.oo=K.shuffle(it.o)}});
+[...LESEN,...ITEMS].forEach(it=>{if(it.type==='mc'){it.ok=it.o[0];it.oo=K.shuffle(it.o)}});
+const ALL=[...LESEN,...ITEMS];   /* Antworten in ans.item in dieser Reihenfolge */
 
-const STEPS=[...SELF.map(s=>({k:'self',s})),...ITEMS.map(it=>({k:'item',it}))];
+const STEPS=[...SELF.map(s=>({k:'self',s})),...ALL.map(it=>({k:'item',it}))];
 let pos=-1;const ans={self:{},item:[]};
 
 function intro(){
   host.innerHTML=`<section class="et-intro">
     <p class="lead">Der Test zeigt dir, mit welcher Stufe du in jedem Modul anfangen solltest. <strong>Er ist keine Klassenarbeit und gibt keine Note.</strong></p>
     <ul class="kurz">
-      <li><b>Dauer:</b> etwa 20 Minuten – 3 Fragen zu dir, dann 16 kurze Aufgaben.</li>
+      <li><b>Dauer:</b> etwa 20 Minuten – 2 Fragen zu dir, ein kurzer Aufgabentext mit 2 Fragen, dann 14 kurze Aufgaben.</li>
       <li><b>Dabei:</b> Taschenrechner, Heft für Nebenrechnungen.</li>
       <li><b>Nicht sicher?</b> Klicke auf „Weiß ich nicht“. Das ist besser als raten.</li>
     </ul>
@@ -85,7 +91,7 @@ function intro(){
   document.getElementById('et-go').onclick=()=>{pos=0;show()};
 }
 
-function bar(){const n=STEPS.length;return `<div class="et-bar" aria-hidden="true"><div style="width:${Math.round(pos/n*100)}%"></div></div><p class="small muted">${pos<SELF.length?'Teil 1 · Fragen zu dir':'Teil 2 · Aufgaben'} – ${pos+1} von ${n}</p>`}
+function bar(){const n=STEPS.length;return `<div class="et-bar" aria-hidden="true"><div style="width:${Math.round(pos/n*100)}%"></div></div><p class="small muted">${pos<SELF.length?'Teil 1 · Fragen zu dir':pos<SELF.length+LESEN.length?'Teil 1 · Aufgabentext verstehen':'Teil 2 · Aufgaben'} – ${pos+1} von ${n}</p>`}
 
 function show(){
   if(pos>=STEPS.length)return result();
@@ -98,7 +104,7 @@ function show(){
     host.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ans.self[s.id]=b.dataset.v;pos++;show()});
   }else{
     const it=st.it,idx=pos-SELF.length,cur=ans.item[idx];
-    host.innerHTML=`${bar()}<div class="card et-card"><h2 class="et-q">${it.t}</h2>
+    host.innerHTML=`${bar()}<div class="card et-card">${it.m==='lesen'?`<div class="box et-lesetext"><p class="eyebrow">Lies den Aufgabentext. Du musst nichts rechnen.</p><p>${LESETEXT}</p></div>`:''}<h2 class="et-q">${it.t}</h2>
       ${it.type==='mc'?`<div class="et-opts">${it.oo.map((o,i)=>`<button class="opt${cur&&cur.v===o?' sel':''}" data-i="${i}">${o}</button>`).join('')}</div>`
         :`<form class="ans" autocomplete="off"><input id="et-in" inputmode="decimal" placeholder="Ergebnis" value="${cur&&cur.raw?esc(cur.raw):''}"><span class="unit">${it.un?u(it.un):''}</span><button class="btn" type="submit">Weiter</button></form><p class="small et-msg" hidden>Gib eine Zahl ein, zum Beispiel 12,5 – oder klicke auf „Weiß ich nicht“.</p>`}
       <div class="row"><button class="btn ghost" id="et-back">Zurück</button><button class="btn ghost" id="et-skip">Weiß ich nicht</button></div></div>`;
@@ -117,23 +123,24 @@ function show(){
 
 /* ---------- Auswertung ---------- */
 function evaluate(){
-  const res={};let score=0;
-  ITEMS.forEach((it,i)=>{const ok=!!(ans.item[i]&&ans.item[i].ok);if(ok)score++;(res[it.m]=res[it.m]||{})[it.L]=ok});
-  const s=ans.self;
+  const res={};let score=0,lesen=0;
+  ALL.forEach((it,i)=>{const ok=!!(ans.item[i]&&ans.item[i].ok);if(it.m==='lesen'){if(ok)lesen++;return}if(ok)score++;(res[it.m]=res[it.m]||{})[it.L]=ok});
+  const s=ans.self;s.text=lesen===2?'leicht':lesen===1?'geht':'schwer';s.lesen=lesen;
   const selfLow=s.abschluss==='hs'||s.note==='4'||s.note==='56';
   const selfHigh=s.abschluss==='abi'&&(s.note==='12'||s.note==='3')&&s.text!=='schwer';
   const recs={};let nS=0;
   MODS.forEach(([id])=>{const r=res[id]||{};let L=r.B&&r.S?'S':'B';
-    if(L==='S'&&selfLow&&score<12)L='B';            /* unklar → einfacher */
+    if(L==='S'&&selfLow&&score<11)L='B';            /* unklar → einfacher */
     recs[id]=L;if(L==='S'&&id!=='rw')nS++});
-  let overall=(score<=5||(s.text==='schwer'&&score<=8))?'E':nS>=4?'S':'B';
+  let overall=(score<=4||(s.text==='schwer'&&score<=7))?'E':nS>=4?'S':'B';
   if(overall==='E')Object.keys(recs).forEach(k=>recs[k]='B');
   ['m8','m9','m10'].forEach(id=>recs[id]=overall==='S'?'S':'B');
   return {res,score,max:ITEMS.length,recs,overall,selfLow,selfHigh,
-    vHint:overall==='S'&&score>=15&&selfHigh,
-    unklar:(selfHigh&&score<=8)||(selfLow&&score>=12)};
+    vHint:overall==='S'&&score>=13&&selfHigh,
+    unklar:(selfHigh&&score<=7)||(selfLow&&score>=11)};
 }
 
+const s_lesenHint=r=>ans.self.lesen<2?` Beim Aufgabentext ${ans.self.lesen===0?'waren beide Fragen':'war eine Frage'} noch schwierig. Lies Aufgaben immer zweimal und markiere: Was ist gegeben, was ist gesucht?`:'';
 function result(){
   const r=evaluate();
   K.save('test',{date:K.today(),score:r.score,max:r.max,recs:r.recs,overall:r.overall,self:ans.self});
@@ -144,19 +151,19 @@ function result(){
   host.innerHTML=`<section class="et-res">
     <div class="merkkarte et-big"><p class="eyebrow">Deine Empfehlung</p><h2>${big[0]}</h2><p>${big[1]}</p>
       <div class="row"><a class="btn" href="${big[2]}">${big[3]}</a>${r.overall==='E'?'<a class="btn ghost" href="index.html">Zur Kursübersicht</a>':''}</div></div>
-    <p><strong>${r.score} von ${r.max} Aufgaben richtig.</strong> ${r.score>=12?'Stark!':r.score>=7?'Gute Ausgangslage.':'Kein Problem – genau dafür ist der Kurs da.'}
+    <p><strong>${r.score} von ${r.max} Aufgaben richtig.</strong> ${r.score>=11?'Stark!':r.score>=6?'Gute Ausgangslage.':'Kein Problem – genau dafür ist der Kurs da.'}
       ${r.unklar?' Deine Angaben und dein Testergebnis passen nicht ganz zusammen. Wir empfehlen deshalb die einfachere Stufe – wechsle hoch, sobald es leicht geht.':''}
-      ${r.vHint?' Wenn dir Standard zu leicht ist, probiere in den Modulen ruhig auch Vertiefung.':''}</p>
+      ${s_lesenHint(r)}${r.vHint?' Wenn dir Standard zu leicht ist, probiere in den Modulen ruhig auch Vertiefung.':''}</p>
     <h2>So startest du in den Modulen</h2>
     <div class="tscroll"><table class="ptable et-table"><thead><tr><th>Modul</th><th>Basis-Aufgabe</th><th>Standard-Aufgabe</th><th>Start auf</th></tr></thead><tbody>
       ${MODS.map(([id,nr,t,href])=>{const x=r.res[id]||{};const L=id==='rw'?null:r.recs[id];
-        return `<tr><th scope="row"><a href="${href}">${nr} · ${esc(t)}</a></th><td>${ic(x.B)}</td><td>${ic(x.S)}</td><td>${L?`<span class="lvl ${L}">${LVN[L]}</span>`:'<span class="small">für alle</span>'}</td></tr>`}).join('')}
+        return `<tr><th scope="row"><a href="${href}">${nr} · ${esc(t)}</a></th>${id==='rw'?'<td colspan="2" class="small">kein Testteil</td>':`<td>${ic(x.B)}</td><td>${ic(x.S)}</td>`}<td>${L?`<span class="lvl ${L}">${LVN[L]}</span>`:'<span class="small">für alle</span>'}</td></tr>`}).join('')}
     </tbody></table></div>
     <p class="small">Die Module öffnen sich jetzt auf der empfohlenen Stufe. Du kannst die Stufe dort jederzeit selbst wechseln. Module 8–10 sind Wahlmodule für später.</p>
     <div class="box merke"><p><strong>Ins Lerntagebuch:</strong> Trage auf der ersten Seite ein: Eingangstest am ${K.dDE(K.today())}${new Date().getFullYear()}, <strong>${r.score} von ${r.max}</strong> Punkten, Empfehlung <strong>${LVN[r.overall]}</strong>.</p></div>
     <p class="small"><button class="btn ghost" id="et-again">Test wiederholen</button></p>
   </section>`;
-  document.getElementById('et-again').onclick=()=>{ans.self={};ans.item=[];ITEMS.forEach(it=>{if(it.oo)it.oo=K.shuffle(it.o)});pos=0;show()};
+  document.getElementById('et-again').onclick=()=>{ans.self={};ans.item=[];ALL.forEach(it=>{if(it.oo)it.oo=K.shuffle(it.o)});pos=0;show()};
   window.scrollTo(0,0);
 }
 
@@ -178,7 +185,7 @@ function schon(){
 function papier(){
   document.body.classList.add('druck');
   const ord=(it,i)=>{const n=it.o.length,r=(i*3+1)%n;return it.o.map((_,k)=>it.o[(k+r)%n])};   /* feste, gemischte Reihenfolge */
-  const key=[];
+  const key=[],lkey=[];
   const bar=document.createElement('div');bar.className='druck-toolbar';
   bar.innerHTML='<strong>Eingangstest – Papierfassung</strong><span class="row"><button class="btn" onclick="this.blur();setTimeout(function(){window.print()},150)">Drucken / als PDF</button><a class="btn ghost" href="eingangstest.html">Zurück</a></span>';
   document.body.prepend(bar);
@@ -186,7 +193,10 @@ function papier(){
   host.innerHTML=`<div class="druck-kopf"><div><strong>Eingangstest</strong> · etwa 20 Minuten · keine Note</div>
       <div class="druck-felder"><span>Name: <i></i></span><span>Klasse: <i></i></span><span>Datum: <i></i></span></div></div>
     <p>Der Test zeigt, mit welcher Stufe du in jedem Modul anfängst. Taschenrechner erlaubt. Weißt du etwas nicht, lass das Feld frei – das ist besser als raten.</p>
-    <section><h2>Teil 1 · Fragen zu dir</h2><ol class="druck-mc">${SELF.map(q=>`<li><div class="q">${q.t}</div><div class="o">${q.o.map(([,t])=>`<span>☐ ${t}</span>`).join('')}</div></li>`).join('')}</ol></section>
+    <section><h2>Teil 1 · Fragen zu dir</h2><ol class="druck-mc">${SELF.map(q=>`<li><div class="q">${q.t}</div><div class="o">${q.o.map(([,t])=>`<span>☐ ${t}</span>`).join('')}</div></li>`).join('')}</ol>
+      <h3>Aufgabentext verstehen</h3><div class="box et-lesetext"><p class="eyebrow">Lies den Aufgabentext. Du musst nichts rechnen.</p><p>${LESETEXT}</p></div>
+      <ol class="druck-mc" start="3">${LESEN.map((it,i)=>{const o=ord(it,i+5),r=o.indexOf(it.ok);lkey.push([String.fromCharCode(97+i),'ABCD'[r]]);
+        return `<li><div class="q">${it.t}</div><div class="o">${o.map((x,j)=>`<span>☐ ${'ABCD'[j]}) ${x}</span>`).join('')}</div></li>`}).join('')}</ol></section>
     <section><h2>Teil 2 · Aufgaben</h2><ol class="druck-mc et-p">${ITEMS.map((it,i)=>{
       if(it.type==='mc'){const o=ord(it,i),r=o.indexOf(it.ok);key.push([i+1,it,'ABCD'[r]]);
         return `<li><div class="q">${it.t}</div><div class="o">${o.map((x,j)=>`<span>☐ ${'ABCD'[j]}) ${x}</span>`).join('')}</div></li>`}
@@ -197,21 +207,22 @@ function papier(){
       <table class="druck-tab"><thead><tr><th>Nr.</th><th>Modul</th><th>Stufe</th><th>Lösung</th></tr></thead><tbody>
         ${key.map(([n,it,l])=>`<tr><td>${n}</td><td>${MODS.find(m=>m[0]===it.m)[1]} · ${esc(MODS.find(m=>m[0]===it.m)[2])}</td><td>${LVN[it.L]}</td><td><strong>${l}</strong>${it.tol?' (±1 %)':''}</td></tr>`).join('')}
       </tbody></table>
+      <p><strong>Aufgabentext verstehen (Teil 1, Fragen 3 und 4):</strong> ${lkey.map((k,i)=>`Frage ${i+3}: <strong>${k[1]}</strong>`).join(' · ')} – zählt nicht zu den Punkten. 2 richtig = „leicht“, 1 = „es geht“, 0 = „schwer“.</p>
       <p class="small">Zahlenwerte: kleine Rundungsabweichungen (ca. ±0,5 %, bei π-Aufgaben ±1 %) gelten als richtig.</p>
       <h3 class="neue-seite">Empfehlung je Modul</h3>
       <table class="druck-tab et-auswert"><thead><tr><th>Modul</th><th>Basis-Aufgabe (Nr.)</th><th>Standard-Aufgabe (Nr.)</th><th>Start auf</th></tr></thead><tbody>
-        ${MODS.map(([id,nr,t])=>{const b=ITEMS.findIndex(x=>x.m===id&&x.L==='B')+1,s2=ITEMS.findIndex(x=>x.m===id&&x.L==='S')+1;
-          return `<tr><td>${nr} · ${esc(t)}</td><td>☐ richtig (${b})</td><td>☐ richtig (${s2})</td><td>${id==='rw'?'für alle':'☐ Basis ☐ Standard'}</td></tr>`}).join('')}
+        ${MODS.filter(([id])=>id!=='rw').map(([id,nr,t])=>{const b=ITEMS.findIndex(x=>x.m===id&&x.L==='B')+1,s2=ITEMS.findIndex(x=>x.m===id&&x.L==='S')+1;
+          return `<tr><td>${nr} · ${esc(t)}</td><td>☐ richtig (${b})</td><td>☐ richtig (${s2})</td><td>☐ Basis ☐ Standard</td></tr>`}).join('')}
       </tbody></table>
       <h3>Regeln</h3>
       <ul>
         <li><strong>Je Modul:</strong> beide Aufgaben richtig → Standard, sonst Basis.</li>
-        <li><strong>Unklare Fälle → einfachere Stufe:</strong> Hauptschulabschluss oder letzte Mathenote 4 bis 6 und weniger als 12 Punkte → auch dort Basis, wo beide Aufgaben richtig sind.</li>
-        <li><strong>Gesamtempfehlung:</strong> „Mathe einfach“ bei höchstens 5 Punkten oder bei „lange Texte: schwer“ und höchstens 8 Punkten. Sonst Standard, wenn mindestens 4 der Module 1–7 auf Standard stehen, ansonsten Basis.</li>
+        <li><strong>Unklare Fälle → einfachere Stufe:</strong> Hauptschulabschluss oder letzte Mathenote 4 bis 6 und weniger als 11 Punkte → auch dort Basis, wo beide Aufgaben richtig sind.</li>
+        <li><strong>Gesamtempfehlung:</strong> „Mathe einfach“ bei höchstens 4 Punkten oder bei 0 richtigen Fragen zum Aufgabentext und höchstens 7 Punkten. Sonst Standard, wenn mindestens 4 der Module 1–7 auf Standard stehen, ansonsten Basis.</li>
         <li><strong>Mathe einfach:</strong> Bei dieser Empfehlung starten alle Module auf Basis.</li>
         <li><strong>Im Kurs eintragen:</strong> Auf der Testseite „Ich habe den Test schon gemacht“ wählen und die Gesamtempfehlung einstellen. Einzelne Module stellen die Lernenden im Modul selbst um.</li>
       </ul>
-      <div class="druck-kopf"><div class="druck-felder"><span>Punkte: <i></i> von 16</span><span>Empfehlung: ☐ Mathe einfach ☐ Basis ☐ Standard</span></div></div>
+      <div class="druck-kopf"><div class="druck-felder"><span>Punkte: <i></i> von 14</span><span>Empfehlung: ☐ Mathe einfach ☐ Basis ☐ Standard</span></div></div>
     </section>`;
 }
 function route(){if(new URLSearchParams(location.search).has('druck'))return papier();if(location.hash==='#schon')schon();else intro()}

@@ -14,7 +14,7 @@ Reine statische Website: kein Build-Schritt, keine Abhängigkeiten außer Google
 | Datei | Inhalt |
 |---|---|
 | `index.html` | Startseite: Ablauf, Niveaus, Modulübersicht mit Status (angefangen/geschafft) |
-| `eingangstest.html` | Eingangstest (Pflicht vor dem ersten Modul): 3 Fragen zur Selbsteinschätzung + 16 Aufgaben (je Pflichtmodul Basis + Standard), automatische Empfehlung je Modul; „Schon gemacht?“ → Stufe direkt wählen |
+| `eingangstest.html` | Eingangstest (Pflicht vor dem ersten Modul): 2 Fragen zur Selbsteinschätzung, ein Aufgabentext mit 2 Verständnisfragen, 14 Aufgaben (je Modul 1–7 Basis + Standard), automatische Empfehlung je Modul; „Schon gemacht?“ → Stufe direkt wählen |
 | `so-gehts.html` | So funktioniert der Kurs (Ablauf, Stufen, Rundungsregel, Lernstand) |
 | `lehrkraefte.html` | Hinweise für die Lernbegleitung (inkl. Auswertungsregeln des Eingangstests) |
 | `fortschritt.html` | Mein Fortschritt: alle Module × Niveaus mit Status und Datum (begonnen/geschafft) aus dem Browser-Speicher |
@@ -86,7 +86,7 @@ Jede Modulseite liefert mit `?druck=1&lvl=B|S|V` ein Arbeitsheft (Erklärungen d
 
 ## Neue Version hochladen
 
-Die Links auf `assets/kurs.css`, `kurs.js`, `fonts.css` und `einfach.js` tragen eine Versionsnummer (`?v=20261016b`). Ändert sich eine dieser Dateien, die Nummer in allen HTML-Seiten erhöhen (Suchen & Ersetzen), damit Browser nicht die alte Fassung aus dem Zwischenspeicher nehmen. `.nojekyll` im Repository nicht löschen.
+Die Links auf `assets/kurs.css`, `kurs.js`, `fonts.css` und `einfach.js` tragen eine Versionsnummer (`?v=20261104`). Ändert sich eine dieser Dateien, die Nummer in allen HTML-Seiten erhöhen (Suchen & Ersetzen), damit Browser nicht die alte Fassung aus dem Zwischenspeicher nehmen. `.nojekyll` im Repository nicht löschen.
 
 ## Neues Modul anlegen
 

@@ -499,3 +499,4 @@ body.druck section:has([data-k="rechnen"]),body.druck section:has(.druck-aufg){b
   .druck-bsp ol>li{padding-left:2px}
   .druck-bsp .eqn{margin-bottom:2px}
 }
+.et-lesetext{background:var(--blue-soft);margin-bottom:12px}.et-lesetext p+p{margin-top:6px}
